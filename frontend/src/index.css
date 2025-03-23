@@ -66,3 +66,32 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#bookcard {
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Inner spacing */
+  margin-bottom: 16px; /* Space between cards */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-family: 'Arial', sans-serif; /* Font style */
+  color: #333; /* Text color */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+#bookcard:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+#bookcard .card-title {
+  font-size: 1.5rem; /* Larger title font */
+  font-weight: bold; /* Bold title */
+  color: #007bff; /* Blue title color */
+  margin-bottom: 8px; /* Space below title */
+}
+
+#bookcard .card-body {
+  font-size: 1rem; /* Standard font size for body */
+  line-height: 1.5; /* Better readability */
+}

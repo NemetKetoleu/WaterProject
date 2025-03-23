@@ -16,7 +16,17 @@ builder.Services.AddDbContext<WaterDbContext>(options =>
     // Get the connection string named "WaterConnection" from the  appsettings.json
     options.UseSqlite(builder.Configuration.GetConnectionString("WaterConnection"));
 });
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000")
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 // This line adds CORS (Cross-Origin Resource Sharing) services to the application.
 // It allows the app to accept requests from different origins (domains).
 
@@ -30,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(x => x.WithOrigins("http://localhost:3000"));
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
