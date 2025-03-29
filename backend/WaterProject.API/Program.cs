@@ -4,31 +4,25 @@ using WaterProject.API.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-// This code adds our Water database context to the services collection.
 builder.Services.AddDbContext<WaterDbContext>(options =>
-{
-    // Get the connection string named "WaterConnection" from the  appsettings.json
-    options.UseSqlite(builder.Configuration.GetConnectionString("WaterConnection"));
-});
+    options.UseSqlite(builder.Configuration.GetConnectionString("WaterConnection")));
+
+// This code is setting up "CORS" to allow certain websites to talk to this app safely.
 builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:3000")
-                .AllowCredentials()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        });
-});
-// This line adds CORS (Cross-Origin Resource Sharing) services to the application.
-// It allows the app to accept requests from different origins (domains).
+    // We're adding a rule for CORS (Cross-Origin Resource Sharing).
+    options.AddPolicy("AllowReactAppBlah",
+    policy => {
+        // We create a rule called "AllowReactAppBlah" that says:
+        policy.AllowAnyOrigin() // Any website can connect to this app (it's open to all websites).
+            .AllowAnyMethod() // The app will accept all types of actions, like GET, POST, PUT, etc.
+            .AllowAnyHeader(); // The app will accept all types of information that the website wants to send.
+    }));
 
 
 var app = builder.Build();
@@ -40,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowReactAppBlah");
 
 app.UseHttpsRedirection();
 

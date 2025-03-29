@@ -1,42 +1,43 @@
-import { useNavigate, useParams } from "react-router-dom";
-import WelcomeBand from "../components/WelcomeBand";
-import { useCart } from "../context/CartContext";
-import { CartItem } from "../types/CartItem";
-import { useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+import WelcomeBand from '../components/WelcomeBand';
+import { useCart } from '../context/CartContext';
+import { useState } from 'react';
+import { CartItem } from '../types/CartItem';
 
-function DonatePage () {
-    const navigate = useNavigate();
-    const { projectName, projectId} = useParams();
-    const {addToCart} = useCart();
-    const [donationAmount, setDonationAmount] = useState<number>(0);
+function Donate() {
+  const navigate = useNavigate();
+  const { projectName, projectId } = useParams();
+  const { addToCart } = useCart();
+  const [amount, setAmount] = useState<number>(0);
 
-    const handleAddToCart = () => {
-        const newItem: CartItem = {
-            projectId: Number(projectId),
-            projectName: projectName || 'No Project Found By That Name bro',
-            donationAmount,
-        };
-            addToCart(newItem);
-            navigate('/cart');
+  const handleAddToCart = () => {
+    const newItem: CartItem = {
+      projectId: Number(projectId),
+      projectName: projectName || 'Unknown Project',
+      donationAmount: amount,
     };
+    addToCart(newItem);
+    navigate('/cart');
+  };
 
-    return (
-        <>
-            <WelcomeBand/>
-            <h2>Donate to {projectName}</h2>
+  return (
+    <>
+      <WelcomeBand />
+      <h2>Donate to {projectName}</h2>
 
-            <div>
-                <input type="number" 
-                placeholder="Enter Donation Amount" 
-                value={donationAmount} 
-                onChange={(x) => setDonationAmount(Number(x.target.value))}
-                />
-                <button onClick={handleAddToCart}>Add to Cart</button>
-            </div>
+      <div>
+        <input
+          type="number"
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(x) => setAmount(Number(x.target.value))}
+        />
+        <button onClick={handleAddToCart}>Add to Cart</button>
+      </div>
 
-            <button onClick={() => navigate(-1)}>Go Back</button>
-        </>
-    );
-
+      <button onClick={() => navigate(-1)}>Go Back</button>
+    </>
+  );
 }
-export default DonatePage;
+
+export default Donate;

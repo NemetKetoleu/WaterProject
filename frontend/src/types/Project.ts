@@ -3,7 +3,7 @@ export interface Project {
     projectName: string;
     projectType: string;
     projectRegionalProgram: string;
-    projectImpact: string;
+    projectImpact: number;
     projectPhase: string;
     projectFunctionalityStatus: string;
-}
+  }

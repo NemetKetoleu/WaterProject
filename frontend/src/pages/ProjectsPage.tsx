@@ -4,28 +4,26 @@ import ProjectList from "../components/ProjectList";
 import WelcomeBand from "../components/WelcomeBand";
 import CartSummary from "../components/CartSummary";
 
-function ProjectsPage () {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+function Projects() {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-return (
-    <div className='container mt-4'>
+  return (
+    <div className="container mt-4">
+      <WelcomeBand />
       <CartSummary />
-      <WelcomeBand/>
-
-    <div className='row'>
-        <div className='col-md-3'>
-          <CategoryFilter 
-          selectedCategories={selectedCategories} 
-          setSelectedCategories={setSelectedCategories}/>
+      <div className="row">
+        <div className="col-md-3">
+          <CategoryFilter
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+          />
         </div>
-
-        <div className='col-md-9'>
-          <ProjectList selectedCategories = {selectedCategories} />
+        <div className="col-md-9">
+          <ProjectList selectedCategories={selectedCategories} />
         </div>
+      </div>
     </div>
-</div>
-)
+  );
 }
 
-
-export default ProjectsPage;
+export default Projects;
