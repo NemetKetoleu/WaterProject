@@ -8,7 +8,7 @@ interface FetchProjectsResponse {
 }
 
 // This is the main web address for the water project
-const API_URL = 'https://waterproject-hilton-backend.azurewebsites.net/Water'; 
+const API_URL = 'https://waterproject-nemet-backend.azurewebsites.net/Water'; 
 // We store the main website address in a variable, so it's easy to use when we need it in different parts of the code
 
 // This function gets a list of projects from the website, with some choices like how many to show
